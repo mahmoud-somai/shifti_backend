@@ -2,15 +2,17 @@ package routes
 
 import (
 	"goback/controllers"
+	service "goback/services"
 
 	"github.com/gin-gonic/gin"
 )
 
-func OrderNoteRouter(router *gin.Engine) {
+func OrderNoteRouter(router *gin.Engine, orderNoteService *service.OrderNoteService) {
+	orderNoteController := controllers.NewOrderNoteController(orderNoteService) // Create an instance of the controller
 
 	routes := router.Group("api/ordersnote")
 
-	routes.GET("", controllers.OrderNoteGet)
-	routes.POST("", controllers.OrderNoteCreate)
-
+	// Use controller methods as route handlers
+	routes.GET("", orderNoteController.OrderNoteGet)
+	routes.POST("", orderNoteController.OrderNoteCreate)
 }

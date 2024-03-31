@@ -1,30 +1,26 @@
 package main
 
 import (
+	"goback/database"
+	"goback/routes"
+	service "goback/services"
 	"net/http"
 
-	configs "goback/database"
-	"goback/routes"
-
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
-
-func init() {
-	configs.ConnectToDB()
-}
 
 func main() {
 	r := gin.Default()
 
-	// Use CORS middleware to allow cross-origin requests
-	r.Use(cors.Default())
-
 	// Initialize database connection
-	configs.ConnectToDB()
+	database.ConnectToDB()
 
-	// Initialize routes
-	routes.OrderNoteRouter(r)
+	// Initialize services
+	orderNoteService := &service.OrderNoteService{} // Initialize your service(s)
+
+	// Initialize routes with service instances
+	routes.OrderNoteRouter(r, orderNoteService)
+
 	// Define a default route
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
