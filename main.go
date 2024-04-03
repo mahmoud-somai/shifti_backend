@@ -17,9 +17,11 @@ func main() {
 
 	// Initialize services
 	orderNoteService := &service.OrderNoteService{} // Initialize your service(s)
+	taxesService := &service.TaxesService{}         // Initialize your service(s)
 
 	// Initialize routes with service instances
 	routes.OrderNoteRouter(r, orderNoteService)
+	routes.TaxesRouter(r, taxesService)
 
 	// Define a default route
 	r.GET("/", func(c *gin.Context) {

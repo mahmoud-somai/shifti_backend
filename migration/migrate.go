@@ -11,4 +11,5 @@ func init() {
 
 func main() {
 	configs.DB.AutoMigrate(&models.OrderNote{})
+	configs.DB.AutoMigrate(&models.Taxes{})
 }
