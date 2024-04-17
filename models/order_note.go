@@ -1,13 +1,11 @@
 package models
 
-import "time"
-
 type OrderNote struct {
-	ID        uint      `gorm:"primaryKey" json:"id_order_note"`
-	ForeignId uint      `gorm:"not null" json:"id_foreign"`
-	Date      time.Time `gorm:"not null" json:"note_date"`
-	Author    string    `gorm:"size:255;not null" json:"author"`
-	Content   string    `gorm:"type:text;not null" json:"content"`
+	ID        uint   `gorm:"primaryKey" json:"id"`
+	ForeignId string `gorm:"not null" json:"note_id"`
+	Date      string `gorm:"size:255;not null" json:"note_date"`
+	Author    string `gorm:"size:255;not null" json:"note_author"`
+	Content   string `gorm:"not null" json:"note_content"`
 }
 
 func (OrderNote) TableName() string {

@@ -12,24 +12,21 @@ import (
 func main() {
 	r := gin.Default()
 
-	// Initialize database connection
 	database.ConnectToDB()
 
-	// Initialize services
-	orderNoteService := &service.OrderNoteService{} // Initialize your service(s)
-	taxesService := &service.TaxesService{}         // Initialize your service(s)
+	orderNoteService := &service.OrderNoteService{}
+	taxesService := &service.TaxesService{}
+	productService := &service.ProductService{}
 
-	// Initialize routes with service instances
 	routes.OrderNoteRouter(r, orderNoteService)
 	routes.TaxesRouter(r, taxesService)
+	routes.ProductRouter(r, productService)
 
-	// Define a default route
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "Hello world from server Go.",
 		})
 	})
 
-	// Run the server
 	r.Run()
 }

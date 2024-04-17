@@ -8,11 +8,10 @@ import (
 )
 
 func OrderNoteRouter(router *gin.Engine, orderNoteService *service.OrderNoteService) {
-	orderNoteController := controllers.NewOrderNoteController(orderNoteService) // Create an instance of the controller
+	orderNoteController := controllers.NewOrderNoteController(orderNoteService)
 
 	routes := router.Group("api/ordersnote")
 
-	// Use controller methods as route handlers
 	routes.GET("", orderNoteController.OrderNoteGet)
 	routes.POST("", orderNoteController.OrderNoteCreate)
 }

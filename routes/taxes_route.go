@@ -8,11 +8,10 @@ import (
 )
 
 func TaxesRouter(router *gin.Engine, TaxesService *service.TaxesService) {
-	TaxesController := controllers.NewTaxeController(TaxesService) 
+	TaxesController := controllers.NewTaxeController(TaxesService)
 
 	routes := router.Group("api/taxes")
 
-	
 	routes.GET("", TaxesController.TaxeGet)
 	routes.POST("", TaxesController.CreateTaxes)
 	routes.POST("/multiple", TaxesController.CreateMultipleTaxes)

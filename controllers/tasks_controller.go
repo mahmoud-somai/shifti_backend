@@ -16,12 +16,12 @@ func NewTaxeController(service *service.TaxesService) *TaxesController {
 }
 
 func (controller *TaxesController) TaxeGet(c *gin.Context) {
-	notes, err := controller.TaxesService.GetTaxes()
+	taxes, err := controller.TaxesService.GetTaxes()
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to retrieve a taxe"})
 		return
 	}
-	c.JSON(200, notes)
+	c.JSON(200, taxes)
 }
 
 func (controller *TaxesController) CreateTaxes(c *gin.Context) {

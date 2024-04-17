@@ -1,15 +1,29 @@
 package main
 
 import (
-	configs "goback/database"
+	"goback/database"
 	"goback/models"
 )
 
 func init() {
-	configs.ConnectToDB()
+	database.ConnectToDB()
 }
 
 func main() {
-	configs.DB.AutoMigrate(&models.OrderNote{})
-	configs.DB.AutoMigrate(&models.Taxes{})
+
+	database.DB.AutoMigrate(&models.OrderNote{})
+	database.DB.AutoMigrate(&models.Taxes{})
+	database.DB.AutoMigrate(&models.Dimension{})
+
+	database.DB.AutoMigrate(&models.Product{})
+	database.DB.AutoMigrate(&models.Customer{})
+	database.DB.AutoMigrate(&models.Order{})
+
+	database.DB.AutoMigrate(&models.Tag{})
+	database.DB.AutoMigrate(&models.Image{})
+	database.DB.AutoMigrate(&models.Attribute{})
+
+	database.DB.AutoMigrate(&models.Cat{})
+	database.DB.AutoMigrate(&models.Category{})
+
 }
